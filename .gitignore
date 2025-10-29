@@ -1,0 +1,12 @@
+node_modules
+dist
+.next
+.env
+.env.local
+.env.*.local
+.vscode
+.DS_Store
+uploads
+yarn.lock
+pnpm-lock.yaml
+coverage
