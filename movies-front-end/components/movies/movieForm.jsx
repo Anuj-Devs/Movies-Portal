@@ -35,7 +35,7 @@ export default function MovieForm({ initial = {}, submitLabel, onSubmit, onCance
       posterFile: undefined,
     })
     setPreview(initial.posterDataUrl || initial.posterUrl || "")
-  }, [initial._id])
+  }, [initial])
 
   function handleFile(file) {
     if (!file) return
