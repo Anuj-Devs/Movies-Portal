@@ -16,10 +16,10 @@ export async function GET(request) {
 
   if (base) {
     const headers = { "Content-Type": "application/json" }
-    const authHeader = request.headers.get("authorization")
-    if (authHeader) {
-      headers["Authorization"] = authHeader
-    }
+    // const authHeader = request.headers.get("authorization")
+    // if (authHeader) {
+    //   headers["Authorization"] = authHeader
+    // }
 
     const res = await fetch(`${base}/movies?page=${page}&limit=${limit}`, {
       cache: "no-store",
