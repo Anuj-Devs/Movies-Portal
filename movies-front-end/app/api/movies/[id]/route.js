@@ -10,7 +10,7 @@ export async function GET(_req, { params }) {
     const data = await res.json().catch(() => ({}))
     return Response.json(data, { status: res.status })
   }
-  const item = store.items.find((m) => m.id === params.id)
+  const item = store.items.find((m) => m.id == params.id)
   if (!item) return Response.json({ error: "Not found" }, { status: 404 })
   return Response.json(item)
 }
