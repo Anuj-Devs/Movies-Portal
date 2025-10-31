@@ -6,12 +6,7 @@ globalThis.__MOVIE_STORE__ = store
 export async function GET(_req, { params }) {
   const base = process.env.API_BASE_URL
   if (base) {
-    const res = await fetch(`${base}/movies/${params.id}`, {
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      }
-    })
+    const res = await fetch(`${base}/movies/${params.id}`)
     const data = await res.json().catch(() => ({}))
     return Response.json(data, { status: res.status })
   }
