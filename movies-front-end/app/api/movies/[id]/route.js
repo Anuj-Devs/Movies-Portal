@@ -1,3 +1,5 @@
+export const runtime = "nodejs"; // Force this route to run on Node.js runtime instead of Edge
+
 const store = globalThis.__MOVIE_STORE__ || { seq: 0, items: [] }
 globalThis.__MOVIE_STORE__ = store
 
