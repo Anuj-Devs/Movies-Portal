@@ -20,9 +20,7 @@ export default function MoviesPage() {
   const [page, setPage] = useState(1)
 
   // ✅ Correct call to listMovies
-  const { data, isLoading } = useSWR(["movies", page], () =>
-    listMovies({ page, limit: PAGE_SIZE })
-  )
+  const { data, isLoading, mutate } = useSWR(["movies", page], () => listMovies({ page, limit: PAGE_SIZE }))
 
   async function handleLogout() {
     try {
