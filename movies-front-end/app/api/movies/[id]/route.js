@@ -10,10 +10,16 @@ export async function GET(_req, { params }) {
       headers["Authorization"] = authHeader
     }
 
-    const res = await fetch(`${base}/movies/${params.id}`, {
+    const url = `${base}/movies/${params.id}`
+    console.log("[v0] GET Request Debug:", { url, authHeader: !!authHeader, headers })
+
+    const res = await fetch(url, {
       cache: "no-store",
       headers,
     })
+
+    console.log("[v0] GET Response Status:", res.status, "URL:", url)
+
     const data = await res.json().catch(() => ({}))
     return Response.json(data, { status: res.status })
   }
