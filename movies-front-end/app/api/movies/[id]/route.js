@@ -1,16 +1,23 @@
-export const runtime = "nodejs"; // Force this route to run on Node.js runtime instead of Edge
-
 const store = globalThis.__MOVIE_STORE__ || { seq: 0, items: [] }
 globalThis.__MOVIE_STORE__ = store
 
 export async function GET(_req, { params }) {
   const base = process.env.API_BASE_URL
   if (base) {
-    const res = await fetch(`${base}/movies/${params.id}`)
+    const authHeader = _req.headers.get("authorization")
+    const headers = { "Content-Type": "application/json" }
+    if (authHeader) {
+      headers["Authorization"] = authHeader
+    }
+
+    const res = await fetch(`${base}/movies/${params.id}`, {
+      cache: "no-store",
+      headers,
+    })
     const data = await res.json().catch(() => ({}))
     return Response.json(data, { status: res.status })
   }
-  const item = store.items.find((m) => m.id == params.id)
+  const item = store.items.find((m) => m.id === params.id)
   if (!item) return Response.json({ error: "Not found" }, { status: 404 })
   return Response.json(item)
 }
@@ -20,9 +27,15 @@ export async function PUT(request, { params }) {
   const body = await request.json()
 
   if (base) {
+    const authHeader = request.headers.get("authorization")
+    const headers = { "Content-Type": "application/json" }
+    if (authHeader) {
+      headers["Authorization"] = authHeader
+    }
+
     const res = await fetch(`${base}/movies/${params.id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify(body),
     })
     const data = await res.json().catch(() => ({}))
@@ -35,10 +48,19 @@ export async function PUT(request, { params }) {
   return Response.json(store.items[idx])
 }
 
-export async function DELETE(_request, { params }) {
+export async function DELETE(request, { params }) {
   const base = process.env.API_BASE_URL
   if (base) {
-    const res = await fetch(`${base}/movies/${params.id}`, { method: "DELETE" })
+    const authHeader = request.headers.get("authorization")
+    const headers = { "Content-Type": "application/json" }
+    if (authHeader) {
+      headers["Authorization"] = authHeader
+    }
+
+    const res = await fetch(`${base}/movies/${params.id}`, {
+      method: "DELETE",
+      headers,
+    })
     if (!res.ok) return Response.json(await res.json(), { status: res.status })
     return Response.json({ ok: true })
   }
