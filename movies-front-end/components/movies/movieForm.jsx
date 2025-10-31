@@ -12,6 +12,7 @@ export default function MovieForm({ initial = {}, submitLabel, onSubmit, onCance
   const [preview, setPreview] = useState(initial?.posterDataUrl || initial?.posterUrl || null)
   const [isDragOver, setIsDragOver] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const fileRef = useRef(null)
   const [showConfirm, setShowConfirm] = useState(false)
   const [formData, setFormData] = useState({
@@ -66,11 +67,16 @@ export default function MovieForm({ initial = {}, submitLabel, onSubmit, onCance
   async function submit() {
     if (!validate()) return
 
-    await onSubmit({
-      title: formData.title,
-      year: Number(formData.publishingYear),
-      posterDataUrl: preview || initial?.posterDataUrl || "",
-    })
+    setSubmitting(true)
+    try {
+      await onSubmit({
+        title: formData.title,
+        year: Number(formData.publishingYear),
+        posterDataUrl: preview || initial?.posterDataUrl || "",
+      })
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   async function handleDelete() {
@@ -190,9 +196,10 @@ export default function MovieForm({ initial = {}, submitLabel, onSubmit, onCance
           <Button
             type="button"
             onClick={submit}
+            disabled={submitting}
             className="brand-btn cursor-pointer h-11 px-6 rounded-lg font-semibold"
           >
-            {submitLabel}
+            {submitting ? <AiOutlineLoading3Quarters className="animate-spin text-lg" /> : submitLabel}
           </Button>
         </div>
       </div>
