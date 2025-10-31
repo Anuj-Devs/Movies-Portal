@@ -21,7 +21,7 @@ export class MoviesService {
 
   async findOne(id: string) {
     const m = await this.movieModel.findById(id).exec();
-    if (!m) throw new NotFoundException('Movie not found');
+    if (!m) return { statusCode: 404, message: 'Movie not found' };
     return m;
   }
 
