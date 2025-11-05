@@ -5,7 +5,6 @@ import { WaveBg } from "@/components/wave-bg"
 export default function RegisterPage() {
   return (
     <div className="relative flex min-h-dvh items-center justify-center">
-      {/* <div className="w-full px-6 md:px-8 "> */}
       <div className="relative w-full max-w-md bg-gray-500/10 py-12 px-4 border border-border rounded-lg mx-4">
         <RegisterForm />
         <div className="mt-4 text-sm text-center">

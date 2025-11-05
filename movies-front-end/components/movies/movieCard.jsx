@@ -3,7 +3,6 @@ export default function MovieCard({ movie }) {
     <div className="card overflow-hidden md:hover:scale-105 hover:scale-95 duration-200 ease-in-out cursor-pointer">
       <div className="aspect-[4/3] bg-black/30">
         {movie.posterDataUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={movie.posterDataUrl || "/placeholder.svg"}
             alt={movie.title}

@@ -5,7 +5,7 @@ export async function POST(request) {
   const body = await request.json();
 
   if (!base) {
-    console.error("❌ Missing API_BASE_URL environment variable.");
+    console.error("Missing API_BASE_URL environment variable.");
     return Response.json({ error: "Server misconfigured" }, { status: 500 });
   }
 
@@ -31,7 +31,7 @@ export async function POST(request) {
 
     return Response.json({ ok: true });
   } catch (err) {
-    console.error("❌ Failed to reach backend:", err);
+    console.error(" Failed to reach backend:", err);
     return Response.json({ error: "Backend connection failed" }, { status: 502 });
   }
 }

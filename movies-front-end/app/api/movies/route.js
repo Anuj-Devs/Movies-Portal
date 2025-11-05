@@ -1,4 +1,4 @@
-export const runtime = "nodejs"; // Force this route to run on Node.js runtime instead of Edge
+export const runtime = "nodejs"; // Force this route to run on Node.js runtime instead of Edge (Use for Vercel)
 const store = globalThis.__MOVIE_STORE__ || {
   seq: 3,
   items: [

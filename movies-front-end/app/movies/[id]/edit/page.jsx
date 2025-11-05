@@ -38,7 +38,7 @@ export default function EditMoviePage() {
             <MovieCardSkeleton from='edit' />
           ) : movie ? (
             <MovieForm
-              initial={movie} // ✅ fixed prop name here
+              initial={movie}
               submitLabel="Update"
               onSubmit={async (fd) => {
                 await updateMovie(params.id, fd)
