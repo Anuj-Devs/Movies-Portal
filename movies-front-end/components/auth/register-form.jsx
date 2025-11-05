@@ -27,7 +27,6 @@ export default function RegisterForm() {
   function validate() {
     const newErrors = { email: "", password: "", confirmPassword: "" };
   
-    // Regex for a basic valid email pattern
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
     if (!formData.email) {

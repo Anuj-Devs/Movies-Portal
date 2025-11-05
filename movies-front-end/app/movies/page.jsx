@@ -19,7 +19,6 @@ export default function MoviesPage() {
   const router = useRouter()
   const [page, setPage] = useState(1)
 
-  // ✅ Correct call to listMovies
   const { data, isLoading, mutate } = useSWR(["movies", page], () => listMovies({ page, limit: PAGE_SIZE }))
 
   async function handleLogout() {
@@ -67,9 +66,6 @@ export default function MoviesPage() {
               </Button>
               {data && data.items.length > 0 && (
                 <Link href="/movies/new">
-                  {/* <Button className="brand-btn hidden md:flex h-12 px-6 rounded-lg cursor-pointer font-semibold">
-                    Add a new movie
-                  </Button> */}
                   <Button className="brand-btn flex md:hidden h-12 px-6 rounded-lg cursor-pointer font-semibold">
                     <FaPlus className="text-lg" />
                   </Button>

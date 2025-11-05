@@ -95,7 +95,6 @@ export default function MovieForm({ initial = {}, submitLabel, onSubmit, onCance
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[1fr_minmax(320px,420px)] gap-10">
-      {/* Poster upload / preview */}
       <div
         className={`
           relative aspect-square rounded-xl border border-dashed border-white/40 bg-white/5 grid place-items-center text-center text-foreground/70
@@ -143,7 +142,6 @@ export default function MovieForm({ initial = {}, submitLabel, onSubmit, onCance
         />
       </div>
 
-      {/* Form Fields */}
       <div className="space-y-5">
         <Input
           placeholder="Title"
@@ -204,7 +202,6 @@ export default function MovieForm({ initial = {}, submitLabel, onSubmit, onCance
         </div>
       </div>
 
-      {/* ✅ Local confirmation popup */}
       {showConfirm && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="bg-white text-black rounded-2xl p-6 w-[90%] max-w-sm shadow-xl">

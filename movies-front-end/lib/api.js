@@ -39,7 +39,6 @@ export async function login({ email, password, remember }) {
     body: JSON.stringify({ email, password, remember }),
   })
 
-  // ✅ Store token in local/session storage
   if (res?.token) setToken(res.token, remember)
 
   return res

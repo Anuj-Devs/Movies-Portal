@@ -10,14 +10,12 @@ export default function AuthPage() {
 
   return (
     <div className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden bg-background">
-      {/* Wave background */}
       <WaveBg
         className={`absolute bottom-0 inset-x-0 transition-all duration-700 ease-in-out
           ${isLogin ? "translate-x-0 scale-x-100" : "-translate-x-10 scale-x-110"}
         `}
       />
 
-      {/* Form container */}
       <div className="relative w-full max-w-md px-6 z-10">
         <div
           className={`transition-all duration-700 ease-in-out transform ${

@@ -23,14 +23,13 @@ export async function POST(request) {
       maxAge: body.remember ? 60 * 60 * 24 * 30 : undefined,
     })
 
-    // ✅ Return token to frontend too
     return Response.json({
       ok: true,
       token: data.token,
       user: data.user || null,
     })
   } catch (err) {
-    console.error("❌ Failed to reach backend:", err)
+    console.error("Failed to reach backend:", err)
     return Response.json({ error: "Backend connection failed" }, { status: 502 })
   }
 }
